@@ -1,26 +1,39 @@
-import { Layout, Menu } from "antd";
-import { createElement } from "react";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { Layout, Menu, MenuProps } from "antd";
+import { NavLink, Outlet } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+
+const items: MenuProps["items"] = [
+  // { key: "0", label: "Home" },
+  {
+    key: "Dashboard",
+    label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
+  },
+
+  {
+    key: "User Management",
+
+    label: "User Management",
+    children: [
+      {
+        key: "Create Admin",
+        label: <NavLink to="/admin/create-admin">Create Admin</NavLink>,
+      },
+      {
+        key: "Create Faculty",
+        label: <NavLink to="/admin/create-faculty">Create Faculty</NavLink>,
+      },
+      {
+        key: "Create Student",
+        label: <NavLink to="/admin/create-student">Create Student</NavLink>,
+      },
+    ],
+  },
+];
 
 const MainLayout = () => {
   return (
-    <Layout>
+    <Layout style={{ height: "100vh" }}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -31,7 +44,17 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="demo-logo-vertical" />
+        <div
+          style={{
+            color: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "1rem",
+          }}
+        >
+          <h1> PH-UM</h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -48,12 +71,14 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            {/* content area */}
-          <h1>here all content implement </h1>
+            {/* content area. main content should be render ere */}
+            <h1>here all content implement </h1>
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ph University Management ©{new Date().getFullYear()} Created by Zehad_Sarkar&ph_team
+          Ph University Management ©{new Date().getFullYear()} Created by
+          Zehad_Sarkar&ph_team
         </Footer>
       </Layout>
     </Layout>
