@@ -1,7 +1,7 @@
 const CreateStudent = () => {
   return (
     <div>
-      <h1>create student</h1>
+     create student
     </div>
   );
 };
