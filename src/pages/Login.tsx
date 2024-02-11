@@ -6,6 +6,7 @@ import { TUser, setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import PhForm from "../components/form/PhForm";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,29 +18,30 @@ const Login = () => {
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("logging in");
-    try {
-      const userInfo = {
-        id: data.userId,
-        password: data.password,
-      };
+  // const onSubmit = async (data: FieldValues) => {
+  //   const toastId = toast.loading("logging in");
+  //   try {
+  //     const userInfo = {
+  //       id: data.userId,
+  //       password: data.password,
+  //     };
 
-      const res = await login(userInfo).unwrap();
+  //     const res = await login(userInfo).unwrap();
 
-      //extract user from jwt access token
-      const user = verifyToken(res.data.accessToken) as TUser;
+  //     //extract user from jwt access token
+  //     const user = verifyToken(res.data.accessToken) as TUser;
 
-      //set user on redux local state
-      dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("login success", { id: toastId, duration: 2000 });
-      navigate(`/${user.role}/dashboard`);
-    } catch (error) {
-      toast.error("something went wrong", { id: toastId, duration: 2000 });
-    }
-  };
+  //     //set user on redux local state
+  //     dispatch(setUser({ user: user, token: res.data.accessToken }));
+  //     toast.success("login success", { id: toastId, duration: 2000 });
+  //     navigate(`/${user.role}/dashboard`);
+  //   } catch (error) {
+  //     toast.error("something went wrong", { id: toastId, duration: 2000 });
+  //   }
+  // };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <PhForm onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="id"></label>
         <input type="text" {...register("userId")} name="id" id="id" />
@@ -54,7 +56,7 @@ const Login = () => {
         />
       </div>
       <Button htmlType="submit">Login</Button>
-    </form>
+    </PhForm>
   );
 };
 

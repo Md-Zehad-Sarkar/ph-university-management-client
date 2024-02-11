@@ -34,7 +34,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<
       method: "POST",
       credentials: "include",
     });
-    console.log("sending refresh token");
 
     const data = await res.json();
 
