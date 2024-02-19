@@ -41,7 +41,7 @@ const MainLayout = () => {
     dispatch(logoutUser());
   };
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: "100%" }}>
       {/* Sidebar means Sider */}
       <Sidebar />
       <Layout>
