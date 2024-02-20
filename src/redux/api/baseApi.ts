@@ -32,7 +32,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 
   //user not found
   if (result?.error?.status === 404) {
-    return toast.error("Api not found");
+    toast.error("Api not found");
   }
 
   //refresh token generated

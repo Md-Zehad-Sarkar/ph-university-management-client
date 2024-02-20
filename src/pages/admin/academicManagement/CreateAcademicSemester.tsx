@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createAcademicSemesterSchema } from "../../../schemas/academicManagementValidation";
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagementApi";
 import { toast } from "sonner";
-import { TResponse } from "../../../types/global";
+import { TResponse } from "../../../types/global.type";
 
 const nameOptions = [
   {
