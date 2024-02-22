@@ -6,11 +6,13 @@ export type TAdminRoutes = {
   element: ReactNode;
 };
 
-export type TSidebarPath = {
-  key: string;
-  label: ReactNode;
-  children?: TSidebarPath[];
-};
+export type TSidebarPath =
+  | {
+      key: string;
+      label: ReactNode;
+      children?: TSidebarPath[];
+    }
+  | undefined;
 
 export type TUserPath = {
   name: string;
